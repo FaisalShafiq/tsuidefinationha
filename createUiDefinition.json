@@ -405,7 +405,7 @@
         "vMSize": "[steps('infrastructureConfig').vMSize]",
         "vidizmoLMSPackage": "[steps('infrastructureConfig').vidizmoLMSPackage]",
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
-        "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName]",
+        "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
         "emailAddress": "[steps('infrastructureConfig').emailAddress]",
         "vidizmoApplicationPassword": "[steps('infrastructureConfig').vidizmoApplicationPassword]",
         "firstName": "[steps('infrastructureConfig').firstName]",
