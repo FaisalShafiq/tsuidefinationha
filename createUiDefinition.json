@@ -1,0 +1,367 @@
+{
+    "handler": "Microsoft.Compute.MultiVm",
+    "version": "0.0.1-preview",
+    "parameters": {
+        "basics": [
+            {
+                "name": "adminUsername",
+                "type": "Microsoft.Compute.UserNameTextBox",
+                "label": "Username",
+                "toolTip": "Admin username for the virtual machines.",
+                "osPlatform": "Windows"
+            },
+            {
+                "name": "adminPassword",
+                "type": "Microsoft.Compute.CredentialsCombo",
+                "label": {
+                    "password": "Password",
+                    "confirmPassword": "Confirm password"
+                },
+                "toolTip": {
+                    "password": "Admin password for the virtual machines."
+                },
+                "osPlatform": "Windows"
+            }
+        ],
+        "steps": [
+            {
+                "name": "infrastructureConfig",
+                "label": "VIDIZMO Infrastructure settings",
+                "subLabel": {
+                    "preValidation": "Configure VIDIZMO infrastructure settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "VIDIZMO Infrastructure settings",
+              "elements": [
+                {
+                  "name": "storageAccount",
+                  "type": "Microsoft.Storage.StorageAccountSelector",
+                  "label": "Storage account",
+                  "defaultValue": {
+                    "name": "storesingle",
+                    "type": "Standard_LRS"
+                  }
+                },
+                {
+                  "name": "vNetName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Virtual Network name",
+                  "toolTip": "Name of the virtual network to be created",
+                  "defaultValue": "vNet001",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
+                  }
+                },
+                {
+                  "name": "vNetAddressPrefix",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Virtual Network Name Address Prefix",
+                  "toolTip": "Provide address prefix for Virtual Network.",
+                  "defaultValue": "10.0.0.0/16",
+                  "constraints": {
+                    "required": true
+                  }
+
+                },
+                {
+                  "name": "subnetName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Subnet Name",
+                  "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
+                  "defaultValue": "Subnet",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "subnetPrefix",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Subnet Prefix",
+                  "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
+                  "defaultValue": "10.0.0.0/24",
+                  "constraints": {
+                    "required": true
+                  }
+                },
+                {
+                  "name": "vMName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Virtual Machine Name",
+                  "toolTip": "Unique Name for the Virtual Machine.",
+                  "defaultValue": "VidAppTest004",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "vMSize",
+                  "type": "Microsoft.Compute.SizeSelector",
+                  "label": "Virtual Machine Size",
+                  "toolTip": "Size of the VIDIZMO VM instance to be created. DS series VMs only supported in premium storage type.",
+                  "recommendedSizes": [
+                    "Standard_DS2",
+                    "Standard_DS3",
+                    "Standard_DS4"
+                  ],
+                  "constraints": {
+                    "allowedSizes": [
+                      "Standard_D1",
+                      "Standard_DS1",
+                      "Standard_D2",
+                      "Standard_DS2",
+                      "Standard_D3",
+                      "Standard_DS3",
+                      "Standard_D4",
+                      "Standard_DS4",
+                      "Standard_D11",
+                      "Standard_DS11",
+                      "Standard_D12",
+                      "Standard_DS12",
+                      "Standard_D13",
+                      "Standard_DS13",
+                      "Standard_D14",
+                      "Standard_DS14",
+                      "Standard_A2"
+                    ]
+                  },
+                  "osPlatform": "Windows"
+                },
+                {
+                  "name": "vidizmoLMSPackage",
+                  "type": "Microsoft.Common.DropDown",
+                  "label": "Select Vidizmo License",
+                  "toolTip": "Select Vidizmo Application License for your deployment.",
+                  "defaultValue": "VDZMO-AZR-MTUBE-STD-100",
+                  "constraints": {
+                    "allowedValues": [
+                      {
+                        "label": "VDZMO-AZR-MTUBE-STD-100",
+                        "value": "VDZMO-AZR-MTUBE-STD-100"
+                      },
+                      {
+                        "label": "VDZMO-AZR-MLMS-100",
+                        "value": "VDZMO-AZR-MLMS-100"
+
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-STD-2500",
+                        "value": "VDZMO-AZR-ENT-STD-2500"
+
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-STD-5000",
+                        "value": "VDZMO-AZR-ENT-STD-5000"
+
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-STD-10K",
+                        "value": "VDZMO-AZR-ENT-STD-10K"
+
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-STD-25K",
+                        "value": "VDZMO-AZR-ENT-STD-25K"
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-PRM-1000",
+                        "value": "VDZMO-AZR-ENT-PRM-1000"
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-PRM-2500",
+                        "value": "VDZMO-AZR-ENT-PRM-2500"
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-PRM-5000",
+                        "value": "VDZMO-AZR-ENT-PRM-5000"
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-PRM-10K",
+                        "value": "VDZMO-AZR-ENT-PRM-10K"
+
+                      },
+                      {
+                        "label": "VDZMO-AZR-ENT-PRM-25K",
+                        "value": "VDZMO-AZR-ENT-PRM-25K"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "mediaServiceName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Media Service Name",
+                  "toolTip": "Unique name for the Media Service.",
+                  "defaultValue": "tstvidmediasvc001",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "mediaStorageName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Media Storage Account Name",
+                  "toolTip": "Unique name for the Media Storage Account.",
+                  "defaultValue": "tstvidstorage001",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "emailAddress",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Email Address",
+                  "toolTip": "Provide your email address",
+                  "defaultValue": "",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,15})$",
+                    "validationMessage": "Must be a valid email address."
+                  }
+                },
+                {
+                  "name": "firstName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "First Name",
+                  "toolTip": "Provide your first name.",
+                  "defaultValue": "Faisal",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "lastName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "First Name",
+                  "toolTip": "Provide your last name.",
+                  "defaultValue": "Faisal",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "organizationName",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Organization Name",
+                  "toolTip": "Provide your organization name.",
+                  "defaultValue": "Softechww LLC",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "webSite",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Web Site URL",
+                  "toolTip": "Provide your organization web site URL.",
+                  "defaultValue": "Softechww LLC",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "phone",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Contact Number.",
+                  "toolTip": "Provide your contact number.",
+                  "defaultValue": "Softechww LLC",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,15}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                },
+                {
+                  "name": "vidizmoApplicationPassword",
+                  "type": "Microsoft.Compute.CredentialsCombo",
+                  "label": {
+                    "password": "Password",
+                    "confirmPassword": "Confirm password"
+                  },
+                  "toolTip": {
+                    "password": "Provide Vidizmo Application Password."
+                  },
+                  "osPlatform": "Windows"
+                },
+                {
+                  "name": "iWouldLikeTo",
+                  "type": "Microsoft.Common.DropDown",
+                  "label": "I would like to",
+                  "defaultValue": "",
+                  "toolTip": "Select option listed in Dropdown",
+                  "constraints": {
+                    "required": true,
+                    "allowedValues": [
+                      {
+                        "label": "Sales Team to Contact me",
+                        "value": "Sales_Team_to_Contact_me"
+                      },
+                      {
+                        "label": "Support Team to Contact me",
+                        "value": "Support_Team_to_Contact_me"
+                      },
+                      {
+                        "label": "Sales & Support Team to Contact me",
+                        "value": "Sales_&_Support_Team_to_Contact_me"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "whereDidYouHearForUs",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Where did you hear for us?",
+                  "toolTip": "Tell us, where did you hear for us?",
+                  "defaultValue": "",
+                  "constraints": {
+                    "required": true,
+                    "regex": "^[a-z0-9A-Z]{1,50}$",
+                    "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                  }
+                }
+              ]
+            }
+        ],
+      "outputs": {
+        "adminUsername": "[basics('adminUsername')]",
+        "adminPassword": "[basics('adminPassword').password]",
+        "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
+        "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
+        "vNetName": "[steps('infrastructureConfig').vNetName]",
+        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetAddressPrefix]",
+        "subnetName": "[steps('infrastructureConfig').subnetName]",
+        "subnetPrefix": "[steps('infrastructureConfig').subnetPrefix]",
+        "vMName": "[steps('infrastructureConfig').vMName]",
+        "vMSize": "[steps('infrastructureConfig').vMSize]",
+        "vidizmoLMSPackage": "[steps('infrastructureConfig').vidizmoLMSPackage]",
+        "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
+        "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName]",
+        "emailAddress": "[steps('infrastructureConfig').emailAddress]",
+        "firstName": "[steps('infrastructureConfig').firstName]",
+        "lastName": "[steps('infrastructureConfig').lastName]",
+        "organizationName": "[steps('infrastructureConfig').organizationName]",
+        "webSite": "[steps('infrastructureConfig').webSite]",
+        "phone": "[steps('infrastructureConfig').phone]",
+        "vidizmoApplicationPassword": "[steps('infrastructureConfig').vidizmoApplicationPassword]",
+        "iWouldLikeTo": "[steps('infrastructureConfig').iWouldLikeTo]",
+        "whereDidYouHearForUs": "[steps('infrastructureConfig').whereDidYouHearForUs]"
+      }
+    }
+}
