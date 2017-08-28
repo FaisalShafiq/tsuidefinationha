@@ -175,7 +175,7 @@
               "type": "Microsoft.Common.DropDown",
               "label": "Select Vidizmo License",
               "toolTip": "Select Vidizmo Application License for your deployment.",
-              "defaultValue": "VDZMO-AZR-MTUBE-STD-100",
+              "defaultValue": "EnterpriseTube Standard - 4 Channels - 1K Users",
               "constraints": {
                 "allowedValues": [
                   {
