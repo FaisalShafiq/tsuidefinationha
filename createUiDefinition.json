@@ -319,7 +319,7 @@
               "defaultValue": "Softechww LLC",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z0-9A-Z]{1,100}$",
+                "regex": "^[a-z0-9A-Z\\s]{1,100}$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-100 characters long."
               }
             },
@@ -328,7 +328,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Web Site URL",
               "toolTip": "Provide your organization web site URL.",
-              "defaultValue": "Softechww LLC",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,100}$",
