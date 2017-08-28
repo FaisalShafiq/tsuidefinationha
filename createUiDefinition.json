@@ -6,7 +6,7 @@
         {
           "name": "adminUsername",
           "type": "Microsoft.Compute.UserNameTextBox",
-          "label": "Username",
+          "label": "Virtual Machine Administrator Username",
           "toolTip": "Admin username for the virtual machines.",
           "osPlatform": "Windows"
         },
@@ -14,7 +14,7 @@
           "name": "adminPassword",
           "type": "Microsoft.Compute.CredentialsCombo",
           "label": {
-            "password": "Password",
+            "password": "Administrator Password",
             "confirmPassword": "Confirm password"
           },
           "toolTip": {
@@ -36,7 +36,7 @@
             {
               "name": "storageAccount",
               "type": "Microsoft.Storage.StorageAccountSelector",
-              "label": "Storage account",
+              "label": "Virtual Machine Storage Account",
               "defaultValue": {
                 "name": "",
                 "type": "Premium_LRS"
