@@ -52,7 +52,7 @@
             {
               "name": "vNetName",
               "type": "Microsoft.Common.TextBox",
-              "label": "Virtual Network name",
+              "label": "Virtual Network Name",
               "toolTip": "Name of the virtual network to be created",
               "defaultValue": "",
               "constraints": {
