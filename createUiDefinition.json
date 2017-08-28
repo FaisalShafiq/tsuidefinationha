@@ -331,7 +331,7 @@
               "defaultValue": "",
               "constraints": {
                 "required": true,
-                "regex": "/^(http|https):\/\/[^ "]+$/",
+                "regex": "/^(http|https):\/\/[^ ]+$/",
                 "validationMessage": "Only provide URLs."
               }
             },
