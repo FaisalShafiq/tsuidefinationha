@@ -331,7 +331,7 @@
               "defaultValue": "",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z0-9A-Z]{1,100}$",
+                "regex": "^[a-z0-9A-Z\\.\\/]{1,100}$",
                 "validationMessage": "Only provide URLs."
               }
             },
