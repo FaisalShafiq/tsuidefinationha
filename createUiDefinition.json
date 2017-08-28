@@ -332,7 +332,7 @@
               "constraints": {
                 "required": true,
                 "regex": "^(http|https):\\/\\/[^ ]+$",
-                "validationMessage": "Only provide URLs."
+                "validationMessage": "Only provide URLs like 'http://yourwebsite.com'."
               }
             },
             {
