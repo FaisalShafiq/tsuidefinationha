@@ -171,11 +171,56 @@
               "osPlatform": "Windows"
             },
             {
+              "name": "mediaServiceName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Media Service Name",
+              "toolTip": "Unique name for the Media Service.",
+              "defaultValue": "tstvidmediasvc001",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,30}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-30 characters long."
+              }
+            },
+            {
+              "name": "mediaStorageName",
+              "type": "Microsoft.Storage.StorageAccountSelector",
+              "label": "Media Service Storage Account",
+              "toolTip": "Unique name for the Media Storage Account.",
+              "defaultValue": {
+                "name": "tstvidstorage001",
+                "type": "Standard_LRS"
+              },
+              "constraints": {
+                "allowedTypes": [
+                  "Standard_LRS",
+                  "Standard_GRS",
+                  "Standard_RAGRS"
+                ]
+              },
+              "options": {
+                "hideExisting": false
+              },
+              "visible": true
+            }
+
+           
+          ]
+        },
+        {
+          "name": "vidizmoApplicationConfig",
+          "label": "VIDIZMO Application settings",
+          "subLabel": {
+            "preValidation": "Configure VIDIZMO Application settings",
+            "postValidation": "Done"
+          },
+          "bladeTitle": "VIDIZMO Application settings",
+          "elements": [
+            {
               "name": "vidizmoLMSPackage",
               "type": "Microsoft.Common.DropDown",
               "label": "Select Vidizmo License",
               "toolTip": "Select Vidizmo Application License for your deployment.",
-              "defaultValue": "EnterpriseTube Standard - 4 Channels - 1K Users",
               "constraints": {
                 "allowedValues": [
                   {
@@ -234,39 +279,6 @@
                   }
                 ]
               }
-            },
-            {
-              "name": "mediaServiceName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Media Service Name",
-              "toolTip": "Unique name for the Media Service.",
-              "defaultValue": "tstvidmediasvc001",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,30}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-30 characters long."
-              }
-            },
-            {
-              "name": "mediaStorageName",
-              "type": "Microsoft.Storage.StorageAccountSelector",
-              "label": "Media Service Storage Account",
-              "toolTip": "Unique name for the Media Storage Account.",
-              "defaultValue": {
-                "name": "tstvidstorage001",
-                "type": "Standard_LRS"
-              },
-              "constraints": {
-                "allowedTypes": [
-                  "Standard_LRS",
-                  "Standard_GRS",
-                  "Standard_RAGRS"
-                ]
-              },
-              "options": {
-                "hideExisting": false
-              },
-              "visible": true
             },
             {
               "name": "emailAddress",
@@ -402,18 +414,18 @@
         "subnetPrefix": "[steps('infrastructureConfig').subnetPrefix]",
         "vMName": "[steps('infrastructureConfig').vMName]",
         "vMSize": "[steps('infrastructureConfig').vMSize]",
-        "vidizmoLMSPackage": "[steps('infrastructureConfig').vidizmoLMSPackage]",
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
-        "emailAddress": "[steps('infrastructureConfig').emailAddress]",
-        "vidizmoApplicationPassword": "[steps('infrastructureConfig').vidizmoApplicationPassword]",
-        "firstName": "[steps('infrastructureConfig').firstName]",
-        "lastName": "[steps('infrastructureConfig').lastName]",
-        "organizationName": "[steps('infrastructureConfig').organizationName]",
-        "webSite": "[steps('infrastructureConfig').webSite]",
-        "phone": "[steps('infrastructureConfig').phone]",
-        "iWouldLikeTo": "[steps('infrastructureConfig').iWouldLikeTo]",
-        "whereDidYouHearForUs": "[steps('infrastructureConfig').whereDidYouHearForUs]"
+        "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
+        "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
+        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword]",
+        "firstName": "[steps('vidizmoApplicationConfig').firstName]",
+        "lastName": "[steps('vidizmoApplicationConfig').lastName]",
+        "organizationName": "[steps('vidizmoApplicationConfig').organizationName]",
+        "webSite": "[steps('vidizmoApplicationConfig').webSite]",
+        "phone": "[steps('vidizmoApplicationConfig').phone]",
+        "iWouldLikeTo": "[steps('vidizmoApplicationConfig').iWouldLikeTo]",
+        "whereDidYouHearForUs": "[steps('vidizmoApplicationConfig').whereDidYouHearForUs]"
       }
     }
 }
