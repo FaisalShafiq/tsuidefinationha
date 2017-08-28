@@ -331,7 +331,7 @@
               "defaultValue": "Softechww LLC",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$",
+                "regex": "^[a-z0-9A-Z ]{1,100}$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-100 characters long."
               }
             },
