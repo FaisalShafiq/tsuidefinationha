@@ -38,7 +38,7 @@
               "type": "Microsoft.Storage.StorageAccountSelector",
               "label": "Storage account",
               "defaultValue": {
-                "name": "storesingle",
+                "name": "",
                 "type": "Premium_LRS"
               },
               "constraints": {
@@ -54,7 +54,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Virtual Network name",
               "toolTip": "Name of the virtual network to be created",
-              "defaultValue": "vNet001",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,15}$",
@@ -65,7 +65,7 @@
               "name": "vNetAddressPrefix",
               "type": "Microsoft.Common.TextBox",
               "label": "Virtual Network Name Address Prefix",
-              "toolTip": "Provide address prefix for Virtual Network.",
+              "toolTip": "Provide address prefix for Virtual Network, like '10.0.0.0/16'.",
               "defaultValue": "10.0.0.0/16",
               "constraints": {
                 "required": true
@@ -77,7 +77,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Subnet Name",
               "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
-              "defaultValue": "Subnet",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,15}$",
@@ -88,7 +88,7 @@
               "name": "subnetPrefix",
               "type": "Microsoft.Common.TextBox",
               "label": "Subnet Prefix",
-              "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
+              "toolTip": "Provide Network Subnet name where VIDIZMO VM will create, like '10.0.0.0/24'.",
               "defaultValue": "10.0.0.0/24",
               "constraints": {
                 "required": true
@@ -99,7 +99,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Virtual Machine Name",
               "toolTip": "Unique Name for the Virtual Machine.",
-              "defaultValue": "VidAppTest004",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,15}$",
@@ -175,7 +175,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Media Service Name",
               "toolTip": "Unique name for the Media Service.",
-              "defaultValue": "tstvidmediasvc001",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,30}$",
@@ -188,7 +188,7 @@
               "label": "Media Service Storage Account",
               "toolTip": "Unique name for the Media Storage Account.",
               "defaultValue": {
-                "name": "tstvidstorage001",
+                "name": "",
                 "type": "Standard_LRS"
               },
               "constraints": {
@@ -222,13 +222,14 @@
               "label": "Select Vidizmo License",
               "toolTip": "Select Vidizmo Application License for your deployment.",
               "constraints": {
+                "required": true,
                 "allowedValues": [
                   {
-                    "label": "Media Tube Standard - 1 Channel - 10 Users",
+                    "label": "Media Tube Standard - 1 Channel - 100 Users",
                     "value": "VDZMO-AZR-MTUBE-STD-100"
                   },
                   {
-                    "label": "Media LMS - 1 Channel - 10 Users",
+                    "label": "Media LMS - 1 Channel - 100 Users",
                     "value": "VDZMO-AZR-MLMS-100"
 
                   },
@@ -283,7 +284,7 @@
             {
               "name": "emailAddress",
               "type": "Microsoft.Common.TextBox",
-              "label": "Your email address",
+              "label": "Your Email Address",
               "toolTip": "Provide your email address",
               "defaultValue": "",
               "constraints": {
@@ -307,9 +308,9 @@
             {
               "name": "firstName",
               "type": "Microsoft.Common.TextBox",
-              "label": "Your first name",
+              "label": "Your First Name",
               "toolTip": "Provide your first name.",
-              "defaultValue": "Faisal",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,15}$",
@@ -319,9 +320,9 @@
             {
               "name": "lastName",
               "type": "Microsoft.Common.TextBox",
-              "label": "Your last name",
+              "label": "Your Last Name",
               "toolTip": "Provide your last name.",
-              "defaultValue": "Shafiq",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,15}$",
@@ -333,7 +334,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Organization Name",
               "toolTip": "Provide your organization name.",
-              "defaultValue": "Softechww LLC",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,100}$",
@@ -343,8 +344,8 @@
             {
               "name": "webSite",
               "type": "Microsoft.Common.TextBox",
-              "label": "Web Site URL",
-              "toolTip": "Provide your organization web site URL.",
+              "label": "Website URL",
+              "toolTip": "Provide your organization website URL.",
               "defaultValue": "",
               "constraints": {
                 "required": true,
@@ -357,7 +358,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Contact Number.",
               "toolTip": "Provide your contact number.",
-              "defaultValue": "53435435345",
+              "defaultValue": "",
               "constraints": {
                 "required": true,
                 "regex": "^[0-9]{1,15}$",
@@ -368,7 +369,6 @@
               "name": "iWouldLikeTo",
               "type": "Microsoft.Common.DropDown",
               "label": "I would like to",
-              "defaultValue": "",
               "toolTip": "Select option listed in Dropdown",
               "constraints": {
                 "required": true,
@@ -395,7 +395,6 @@
               "toolTip": "Tell us, where did you hear for us?",
               "defaultValue": "",
               "constraints": {
-                "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,100}$",
                 "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
               }
