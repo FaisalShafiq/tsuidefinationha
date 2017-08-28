@@ -179,52 +179,57 @@
               "constraints": {
                 "allowedValues": [
                   {
-                    "label": "VDZMO-AZR-MTUBE-STD-100",
+                    "label": "Media Tube Standard - 1 Channel - 10 Users",
                     "value": "VDZMO-AZR-MTUBE-STD-100"
                   },
                   {
-                    "label": "VDZMO-AZR-MLMS-100",
+                    "label": "Media LMS - 1 Channel - 10 Users",
                     "value": "VDZMO-AZR-MLMS-100"
 
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-STD-2500",
+                    "label": "EnterpriseTube Standard - 4 Channels - 1K Users",
+                    "value": "VDZMO-AZR-ENT-STD-1000"
+
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Channels - 2.5K Users",
                     "value": "VDZMO-AZR-ENT-STD-2500"
 
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-STD-5000",
+                    "label": "EnterpriseTube Standard - 4 Channels - 5K Users",
                     "value": "VDZMO-AZR-ENT-STD-5000"
 
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-STD-10K",
+                    "label": "EnterpriseTube Standard - 4 Channels - 10K Users",
                     "value": "VDZMO-AZR-ENT-STD-10K"
 
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-STD-25K",
+                    "label": "EnterpriseTube Standard - 4 Channels - 25K Users",
                     "value": "VDZMO-AZR-ENT-STD-25K"
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-PRM-1000",
+                    "label": "EnterpriseTube Premium - 4 Channels - 1K Users",
                     "value": "VDZMO-AZR-ENT-PRM-1000"
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-PRM-2500",
+                    "label": "EnterpriseTube Premium - 4 Channels - 2.5K Users",
                     "value": "VDZMO-AZR-ENT-PRM-2500"
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-PRM-5000",
+                    "label": "EnterpriseTube Premium - 4 Channels - 5K Users",
                     "value": "VDZMO-AZR-ENT-PRM-5000"
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-PRM-10K",
+                    "label": "EnterpriseTube Premium - 4 Channels - 10K Users",
                     "value": "VDZMO-AZR-ENT-PRM-10K"
 
                   },
                   {
-                    "label": "VDZMO-AZR-ENT-PRM-25K",
+                    "label": "EnterpriseTube Premium - 4 Channels - 25K Users",
                     "value": "VDZMO-AZR-ENT-PRM-25K"
                   }
                 ]
