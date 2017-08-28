@@ -379,7 +379,7 @@
               "defaultValue": "",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z\\d\\-_\\s]+{1,50}$",
+                "regex": "^[ A-Za-z0-9_@./#&+-]*$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
               }
             }
