@@ -73,23 +73,61 @@
 
             },
             {
-              "name": "subnetName",
+              "name": "staticSubnet",
               "type": "Microsoft.Common.TextBox",
-              "label": "Subnet Name",
-              "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
-              "defaultValue": "",
+              "label": "Active Directory Subnet Prefix",
+              "toolTip": "Subnet Prefix for Active Directory servers, like '10.0.0.0/24'.",
+              "defaultValue": "10.0.0.0/24",
               "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,15}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                "required": true
               }
             },
             {
-              "name": "subnetPrefix",
+              "name": "sqlSubnet",
               "type": "Microsoft.Common.TextBox",
-              "label": "Subnet Prefix",
-              "toolTip": "Provide Network Subnet name where VIDIZMO VM will create, like '10.0.0.0/24'.",
-              "defaultValue": "10.0.0.0/24",
+              "label": "SQL Subnet Prefix",
+              "toolTip": "Subnet Prefix for SQL servers, like '10.0.0.0/24'.",
+              "defaultValue": "10.0.1.0/26",
+              "constraints": {
+                "required": true
+              }
+            },
+            {
+              "name": "appSubnet",
+              "type": "Microsoft.Common.TextBox",
+              "label": "VIDIZMO Application Subnet Prefix",
+              "toolTip": "Subnet Prefix for VIDIZMO application servers, like '10.0.0.0/24'.",
+              "defaultValue": "10.0.2.0/26",
+              "constraints": {
+                "required": true
+              }
+            },
+            {
+              "name": "adPDCNICIPAddress",
+              "type": "Microsoft.Common.TextBox",
+              "label": "AD primary Server IP Address",
+              "toolTip": "Provide IP address for Active Directory primary server.",
+              "defaultValue": "10.0.0.4",
+              "constraints": {
+                "required": true
+              }
+            },
+            {
+              "name": "adBDCNICIPAddress",
+              "type": "Microsoft.Common.TextBox",
+              "label": "AD backup Server IP Address",
+              "toolTip": "Provide IP address for Active Directory backup server.",
+              "defaultValue": "10.0.0.5",
+              "constraints": {
+                "required": true
+              }
+            },
+            {
+              "name": "sqlLBIPAddress",
+              "type": "Microsoft.Common.TextBox",
+              "label": "SQL load balancer IP Address",
+              "toolTip": "Provide IP address for SQL load balancer.",
+              "defaultValue": "10.0.1.9",
               "constraints": {
                 "required": true
               }
@@ -107,14 +145,14 @@
               }
             },
             {
-              "name": "vMSize",
+              "name": "adVMSize",
               "type": "Microsoft.Compute.SizeSelector",
-              "label": "Virtual Machine Size",
-              "toolTip": "Size of the VIDIZMO VM instance to be created. DS series VMs only supported in premium storage type.",
+              "label": "Active Directory Virtual Machine Size",
+              "toolTip": "Size of the VIDIZMO VM instance to be created for Active Directory servers. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
-                "Standard_DS2",
-                "Standard_DS3",
-                "Standard_DS4"
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3"
               ],
               "constraints": {
                 "allowedSizes": [
@@ -171,6 +209,445 @@
               "osPlatform": "Windows"
             },
             {
+              "name": "sqlVMSize",
+              "type": "Microsoft.Compute.SizeSelector",
+              "label": "SQL Virtual Machine Size",
+              "toolTip": "Size of the VIDIZMO VM instance to be created for SQL Servers. DS series VMs only supported in premium storage type.",
+              "recommendedSizes": [
+                "Standard_DS2",
+                "Standard_DS3",
+                "Standard_DS4"
+              ],
+              "constraints": {
+                "allowedSizes": [
+                  "Standard_DS2",
+                  "Standard_DS3",
+                  "Standard_DS4",
+                  "Standard_DS12",
+                  "Standard_DS13",
+                  "Standard_DS14",
+                  "Standard_DS3_v2",
+                  "Standard_DS4_v2",
+                  "Standard_DS5_v2",
+                  "Standard_DS12_v2",
+                  "Standard_DS13_v2",
+                  "Standard_DS14_v2",
+                  "Standard_DS15_v2",
+                  "Standard_GS2",
+                  "Standard_GS3",
+                  "Standard_GS4",
+                  "Standard_GS5"
+                ]
+              },
+              "osPlatform": "Windows"
+            },
+            {
+              "name": "appVMSize",
+              "type": "Microsoft.Compute.SizeSelector",
+              "label": "VIDIZMO Application Virtual Machine Size",
+              "toolTip": "Size of the VIDIZMO VM instance to be created for VIDIZMO Application servers. DS series VMs only supported in premium storage type.",
+              "recommendedSizes": [
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3"
+              ],
+              "constraints": {
+                "allowedSizes": [
+                  "Standard_A3",
+                  "Standard_A4",
+                  "Standard_A6",
+                  "Standard_A7",
+                  "Standard_A8",
+                  "Standard_A9",
+                  "Standard_A10",
+                  "Standard_A11",
+                  "Standard_D2",
+                  "Standard_D3",
+                  "Standard_D4",
+                  "Standard_D12",
+                  "Standard_D13",
+                  "Standard_D14",
+                  "Standard_D3_v2",
+                  "Standard_D4_v2",
+                  "Standard_D5_v2",
+                  "Standard_D12_v2",
+                  "Standard_D13_v2",
+                  "Standard_D14_v2",
+                  "Standard_D15_v2",
+                  "Standard_DS2",
+                  "Standard_DS3",
+                  "Standard_DS4",
+                  "Standard_DS12",
+                  "Standard_DS13",
+                  "Standard_DS14",
+                  "Standard_DS3_v2",
+                  "Standard_DS4_v2",
+                  "Standard_DS5_v2",
+                  "Standard_DS12_v2",
+                  "Standard_DS13_v2",
+                  "Standard_DS14_v2",
+                  "Standard_DS15_v2",
+                  "Standard_F4",
+                  "Standard_F8",
+                  "Standard_F16",
+                  "Standard_F4s",
+                  "Standard_F8s",
+                  "Standard_F16s",
+                  "Standard_G2",
+                  "Standard_G3",
+                  "Standard_G4",
+                  "Standard_G5",
+                  "Standard_GS2",
+                  "Standard_GS3",
+                  "Standard_GS4",
+                  "Standard_GS5"
+                ]
+              },
+              "osPlatform": "Windows"
+            },
+            {
+              "name": "witnessVMSize",
+              "type": "Microsoft.Compute.SizeSelector",
+              "label": "Witness Virtual Machine Size",
+              "toolTip": "Size of the VIDIZMO VM instance to be created for High Availibility witness server. DS series VMs only supported in premium storage type.",
+              "recommendedSizes": [
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3"
+              ],
+              "constraints": {
+                "allowedSizes": [
+                  "Standard_A3",
+                  "Standard_A4",
+                  "Standard_A6",
+                  "Standard_A7",
+                  "Standard_A8",
+                  "Standard_A9",
+                  "Standard_A10",
+                  "Standard_A11",
+                  "Standard_D2",
+                  "Standard_D3",
+                  "Standard_D4",
+                  "Standard_D12",
+                  "Standard_D13",
+                  "Standard_D14",
+                  "Standard_D3_v2",
+                  "Standard_D4_v2",
+                  "Standard_D5_v2",
+                  "Standard_D12_v2",
+                  "Standard_D13_v2",
+                  "Standard_D14_v2",
+                  "Standard_D15_v2",
+                  "Standard_DS2",
+                  "Standard_DS3",
+                  "Standard_DS4",
+                  "Standard_DS12",
+                  "Standard_DS13",
+                  "Standard_DS14",
+                  "Standard_DS3_v2",
+                  "Standard_DS4_v2",
+                  "Standard_DS5_v2",
+                  "Standard_DS12_v2",
+                  "Standard_DS13_v2",
+                  "Standard_DS14_v2",
+                  "Standard_DS15_v2",
+                  "Standard_F4",
+                  "Standard_F8",
+                  "Standard_F16",
+                  "Standard_F4s",
+                  "Standard_F8s",
+                  "Standard_F16s",
+                  "Standard_G2",
+                  "Standard_G3",
+                  "Standard_G4",
+                  "Standard_G5",
+                  "Standard_GS2",
+                  "Standard_GS3",
+                  "Standard_GS4",
+                  "Standard_GS5"
+                ]
+              },
+              "osPlatform": "Windows"
+            },
+            {
+              "name": "appVMInstanceCount",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Application VM Number of Instances",
+              "toolTip": "Provide number of instance for VIDIZMO application servera.",
+              "defaultValue": "2",
+              "constraints": {
+                "required": true,
+                "regex": "^[0-9]{1,2}$",
+                "validationMessage": "Only numbers are allowed, and the value must be 1-2 characters long."
+              }
+            },
+            {
+              "name": "domainName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Domain Name for Active Directory service",
+              "toolTip": "Domain Name for Active Directory service like 'yourdomain.local'.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
+                "validationMessage": "Only characters for domain are allowd like 'yourdomain.local'."
+              }
+            },
+            {
+              "name": "sqlServerAccountUserName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "User Name for SQL Server Configuration",
+              "toolTip": "Provide a domain user name to use in SQL Service Configuration.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,15}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+              }
+            },
+            {
+              "name": "sqlServerAccountUserPassword",
+              "type": "Microsoft.Compute.PasswordBox",
+              "label": {
+                "password": "SQL Server User Password",
+                "confirmPassword": "Confirm password"
+              },
+              "toolTip": {
+                "password": "Provide SQL Server User Password."
+              },
+              "constraints": {
+                "required": true
+              }
+            },
+            {
+              "name": "deploymentPrefix",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Always On Availability Group deployment Prefix",
+              "toolTip": "Provide Always On Availability Group deployment Prefix.",
+              "defaultValue": "aodns",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,5}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-5 characters long."
+              }
+            },
+            {
+              "name": "autoPatchingDay",
+              "type": "Microsoft.Common.DropDown",
+              "label": "SQL Auto Patching Day",
+              "defaultValue": "Sunday",
+              "toolTip": "Select day for SQL auto patching.",
+              "constraints": {
+                "required": true,
+                "allowedValues": [
+                  {
+                    "label": "Sunday",
+                    "value": "Sunday"
+
+                  },
+                  {
+                    "label": "Monday",
+                    "value": "Monday"
+
+                  },
+                  {
+                    "label": "Tuesday",
+                    "value": "Tuesday"
+
+                  },
+                  {
+                    "label": "Wednesday",
+                    "value": "Wednesday"
+
+                  },
+                  {
+                    "label": "Thursday",
+                    "value": "Thursday"
+                  },
+                  {
+                    "label": "Friday",
+                    "value": "Friday"
+                  },
+                  {
+                    "label": "Saturday",
+                    "value": "Saturday"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "autoPatchingStartHour",
+              "type": "Microsoft.Common.DropDown",
+              "label": "SQL Auto Patching Start Hour",
+              "defaultValue": "2",
+              "toolTip": "Select start hour for SQL auto patching.",
+              "constraints": {
+                "required": true,
+                "allowedValues": [
+                  {
+                    "label": "0",
+                    "value": "0"
+
+                  },
+                  {
+                    "label": "1",
+                    "value": "1"
+
+                  },
+                  {
+                    "label": "2",
+                    "value": "2"
+
+                  },
+                  {
+                    "label": "3",
+                    "value": "3"
+
+                  },
+                  {
+                    "label": "4",
+                    "value": "4"
+                  },
+                  {
+                    "label": "5",
+                    "value": "5"
+                  },
+                  {
+                    "label": "6",
+                    "value": "6"
+                  },
+                  {
+                    "label": "7",
+                    "value": "7"
+                  },
+                  {
+                    "label": "8",
+                    "value": "8"
+                  },
+                  {
+                    "label": "9",
+                    "value": "9"
+                  },
+                  {
+                    "label": "10",
+                    "value": "10"
+                  },
+                  {
+                    "label": "11",
+                    "value": "11"
+                  },
+                  {
+                    "label": "12",
+                    "value": "12"
+                  },
+                  {
+                    "label": "13",
+                    "value": "13"
+                  },
+                  {
+                    "label": "14",
+                    "value": "14"
+                  },
+                  {
+                    "label": "15",
+                    "value": "15"
+                  },
+                  {
+                    "label": "16",
+                    "value": "16"
+                  },
+                  {
+                    "label": "17",
+                    "value": "17"
+                  },
+                  {
+                    "label": "18",
+                    "value": "18"
+                  },
+                  {
+                    "label": "19",
+                    "value": "19"
+                  },
+                  {
+                    "label": "20",
+                    "value": "20"
+                  },
+                  {
+                    "label": "21",
+                    "value": "21"
+                  },
+                  {
+                    "label": "22",
+                    "value": "22"
+                  },
+                  {
+                    "label": "23",
+                    "value": "23"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "sqlAOAGName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "SQL Always On Availability Group Name",
+              "toolTip": "SQL Always On Availability Group Name.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,10}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
+              }
+            },
+            {
+              "name": "sqlAOListenerName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "SQL Always On Availability Group Listener Name",
+              "toolTip": "SQL Always On Availability Group Listener Name.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,20}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-20 characters long."
+              }
+            },
+            {
+              "name": "sqlAOListenerPort",
+              "type": "Microsoft.Common.TextBox",
+              "label": "SQL Always On Availability Group Listener Port",
+              "toolTip": "SQL Always On Availability Group Listener Port.",
+              "defaultValue": "1433",
+              "constraints": {
+                "required": true,
+                "regex": "^[0-9]{1,6}$",
+                "validationMessage": "Only numbers are allowed, and the value must be 1-6 characters long."
+              }
+            },
+            {
+              "name": "vidizmoAppMachineName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "VIDIZMO Application Server DNS Name",
+              "toolTip": "VIDIZMO Application DNS name to configure in Azure Public IP.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,15}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+              }
+            },
+            {
+              "name": "appScaleSetName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "VIDIZMO Application ScaleSet Name Prefix",
+              "toolTip": "Provide VIDIZMO Application ScaleSet name prefix.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,8}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-8 characters long."
+              }
+            },
+            {
               "name": "mediaServiceName",
               "type": "Microsoft.Common.TextBox",
               "label": "Media Service Name",
@@ -204,7 +681,7 @@
               "visible": true
             }
 
-           
+
           ]
         },
         {
@@ -224,15 +701,6 @@
               "constraints": {
                 "required": true,
                 "allowedValues": [
-                  {
-                    "label": "Media Tube Standard - 1 Channel - 100 Users",
-                    "value": "VDZMO-AZR-MTUBE-STD-100"
-                  },
-                  {
-                    "label": "Media LMS - 1 Channel - 100 Users",
-                    "value": "VDZMO-AZR-MLMS-100"
-
-                  },
                   {
                     "label": "EnterpriseTube Standard - 4 Channels - 1K Users",
                     "value": "VDZMO-AZR-ENT-STD-1000"
@@ -295,7 +763,7 @@
             },
             {
               "name": "vidizmoApplicationPassword",
-              "type": "Microsoft.Compute.CredentialsCombo",
+              "type": "Microsoft.Compute.PasswordBox",
               "label": {
                 "password": "VIDIZMO Application User Password",
                 "confirmPassword": "Confirm password"
@@ -303,7 +771,9 @@
               "toolTip": {
                 "password": "Provide Vidizmo Application User Password."
               },
-              "osPlatform": "Windows"
+              "constraints": {
+                "required": true
+              }
             },
             {
               "name": "firstName",
@@ -356,8 +826,8 @@
             {
               "name": "phone",
               "type": "Microsoft.Common.TextBox",
-              "label": "Contact Number.",
-              "toolTip": "Provide your contact number.",
+              "label": "Phone Number",
+              "toolTip": "Provide your phone number.",
               "defaultValue": "",
               "constraints": {
                 "required": true,
@@ -374,16 +844,16 @@
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "Sales Team to Contact me",
+                    "label": "VIDIZMO Sales Team to Contact me",
                     "value": "Sales_Team_to_Contact_me"
                   },
                   {
-                    "label": "Support Team to Contact me",
+                    "label": "VIDIZMO Support Team to Contact me",
                     "value": "Support_Team_to_Contact_me"
                   },
                   {
-                    "label": "Sales & Support Team to Contact me",
-                    "value": "Sales_&_Support_Team_to_Contact_me"
+                    "label": "VIDIZMO Sales & Support Team to Contact me",
+                    "value": "Sales_and_Support_Team_to_Contact_me"
                   }
                 ]
               }
@@ -395,6 +865,7 @@
               "toolTip": "Tell us, where did you hear for us?",
               "defaultValue": "",
               "constraints": {
+                "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,100}$",
                 "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
               }
