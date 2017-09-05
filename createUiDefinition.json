@@ -119,7 +119,7 @@
             {
               "name": "adVMSize",
               "type": "Microsoft.Compute.SizeSelector",
-              "label": "Active Directory Virtual Machine Size",
+              "label": "Active Directory VM Size",
               "toolTip": "Size of the VIDIZMO VM instance to be created for Active Directory servers. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
                 "Standard_D1",
@@ -128,6 +128,7 @@
               ],
               "constraints": {
                 "allowedSizes": [
+                  "Standard_A2",
                   "Standard_A3",
                   "Standard_A4",
                   "Standard_A6",
@@ -136,6 +137,7 @@
                   "Standard_A9",
                   "Standard_A10",
                   "Standard_A11",
+                  "Standard_D1",
                   "Standard_D2",
                   "Standard_D3",
                   "Standard_D4",
@@ -183,7 +185,7 @@
             {
               "name": "sqlVMSize",
               "type": "Microsoft.Compute.SizeSelector",
-              "label": "SQL Virtual Machine Size",
+              "label": "SQL VM Size",
               "toolTip": "Size of the VIDIZMO VM instance to be created for SQL Servers. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
                 "Standard_DS2",
@@ -216,7 +218,7 @@
             {
               "name": "appVMSize",
               "type": "Microsoft.Compute.SizeSelector",
-              "label": "VIDIZMO Application Virtual Machine Size",
+              "label": "VIDIZMO Application VM Size",
               "toolTip": "Size of the VIDIZMO VM instance to be created for VIDIZMO Application servers. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
                 "Standard_D1",
@@ -338,7 +340,7 @@
               "name": "appVMInstanceCount",
               "type": "Microsoft.Common.TextBox",
               "label": "Application VM Number of Instances",
-              "toolTip": "Provide number of instance for VIDIZMO application servera.",
+              "toolTip": "Provide number of instance for VIDIZMO application servers.",
               "defaultValue": "2",
               "constraints": {
                 "required": true,
@@ -371,7 +373,7 @@
               }
             },
             {
-              "name": "sqlServerAccountUserPassword",
+              "name": "sqlServerAccountPassword",
               "type": "Microsoft.Compute.PasswordBox",
               "label": {
                 "password": "SQL Server User Password",
