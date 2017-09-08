@@ -34,6 +34,51 @@
           "bladeTitle": "VIDIZMO Infrastructure settings",
           "elements": [
             {
+                        "name": "vnetSpec",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                            "virtualNetwork": "Virtual network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "",
+                            "subnets": ""
+                        },
+                        "defaultValue": {
+                            "name": "splunkVnet",
+                            "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                            "minAddressPrefixSize": "/29"
+                        },
+                        "subnets": {
+                            "subnet1": {
+                                "label": "Search head subnet",
+                                "defaultValue": {
+                                    "name": "shsubnet",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/29",
+                                    "minAddressCount": 1,
+                                    "requireContiguousAddresses": true
+                                }
+                            },
+                            "subnet2": {
+                                "label": "Index subnet",
+                                "defaultValue": {
+                                    "name": "idxsubnet",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/29",
+                                    "minAddressCount": 4,
+                                    "requireContiguousAddresses": true
+                                }
+                            }
+                        }
+                    },
+              {
               "name": "vNetName",
               "type": "Microsoft.Common.TextBox",
               "label": "Virtual Network Name",
