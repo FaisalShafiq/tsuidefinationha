@@ -216,70 +216,6 @@
               "osPlatform": "Windows"
             },
             {
-              "name": "appVMSize",
-              "type": "Microsoft.Compute.SizeSelector",
-              "label": "VIDIZMO Application VM Size",
-              "toolTip": "Size of the VIDIZMO VM instance to be created for VIDIZMO Application servers. DS series VMs only supported in premium storage type.",
-              "recommendedSizes": [
-                "Standard_D1",
-                "Standard_D2",
-                "Standard_D3"
-              ],
-              "constraints": {
-                "allowedSizes": [
-                  "Standard_A3",
-                  "Standard_A4",
-                  "Standard_A6",
-                  "Standard_A7",
-                  "Standard_A8",
-                  "Standard_A9",
-                  "Standard_A10",
-                  "Standard_A11",
-                  "Standard_D2",
-                  "Standard_D3",
-                  "Standard_D4",
-                  "Standard_D12",
-                  "Standard_D13",
-                  "Standard_D14",
-                  "Standard_D3_v2",
-                  "Standard_D4_v2",
-                  "Standard_D5_v2",
-                  "Standard_D12_v2",
-                  "Standard_D13_v2",
-                  "Standard_D14_v2",
-                  "Standard_D15_v2",
-                  "Standard_DS2",
-                  "Standard_DS3",
-                  "Standard_DS4",
-                  "Standard_DS12",
-                  "Standard_DS13",
-                  "Standard_DS14",
-                  "Standard_DS3_v2",
-                  "Standard_DS4_v2",
-                  "Standard_DS5_v2",
-                  "Standard_DS12_v2",
-                  "Standard_DS13_v2",
-                  "Standard_DS14_v2",
-                  "Standard_DS15_v2",
-                  "Standard_F4",
-                  "Standard_F8",
-                  "Standard_F16",
-                  "Standard_F4s",
-                  "Standard_F8s",
-                  "Standard_F16s",
-                  "Standard_G2",
-                  "Standard_G3",
-                  "Standard_G4",
-                  "Standard_G5",
-                  "Standard_GS2",
-                  "Standard_GS3",
-                  "Standard_GS4",
-                  "Standard_GS5"
-                ]
-              },
-              "osPlatform": "Windows"
-            },
-            {
               "name": "witnessVMSize",
               "type": "Microsoft.Compute.SizeSelector",
               "label": "Witness VM Size",
@@ -335,18 +271,6 @@
                 ]
               },
               "osPlatform": "Windows"
-            },
-            {
-              "name": "appVMInstanceCount",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Application VM Number of Instances",
-              "toolTip": "Provide number of instance for VIDIZMO application servers.",
-              "defaultValue": "2",
-              "constraints": {
-                "required": true,
-                "regex": "^[0-9]{1,2}$",
-                "validationMessage": "Only numbers are allowed, and the value must be 1-2 characters long."
-              }
             },
             {
               "name": "domainName",
@@ -425,39 +349,43 @@
               "constraints": {
                 "required": true,
                 "allowedValues": [
-                  {
-                    "label": "Sunday",
-                    "value": "Sunday"
-
-                  },
-                  {
-                    "label": "Monday",
-                    "value": "Monday"
-
-                  },
-                  {
-                    "label": "Tuesday",
-                    "value": "Tuesday"
-
-                  },
-                  {
-                    "label": "Wednesday",
-                    "value": "Wednesday"
-
-                  },
-                  {
-                    "label": "Thursday",
-                    "value": "Thursday"
-                  },
-                  {
-                    "label": "Friday",
-                    "value": "Friday"
-                  },
-                  {
-                    "label": "Saturday",
-                    "value": "Saturday"
-                  }
-                ]
+                {
+                  "label": "Never",
+                  "value": "Never"
+                },
+                {
+                  "label": "Daily",
+                  "value": "Everyday"
+                },
+                {
+                  "label": "Sunday",
+                  "value": "Sunday"
+                },
+                {
+                  "label": "Monday",
+                  "value": "Monday"
+                },
+                {
+                  "label": "Tuesday",
+                  "value": "Tuesday"
+                },
+                {
+                  "label": "Wednesday",
+                  "value": "Wednesday"
+                },
+                {
+                  "label": "Thursday",
+                  "value": "Thursday"
+                },
+                {
+                  "label": "Friday",
+                  "value": "Friday"
+                },
+                {
+                  "label": "Saturday",
+                  "value": "Saturday"
+                }
+              ]
               }
             },
             {
@@ -573,10 +501,10 @@
               "type": "Microsoft.Common.TextBox",
               "label": "SQL Always On Availability Group Name",
               "toolTip": "SQL Always On Availability Group Name.",
-              "defaultValue": "",
+              "defaultValue": "alwayson-ag",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z0-9A-Z]{1,10}$",
+                "regex": "^[a-z0-9A-Z -]{1,20}$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
               }
             },
@@ -585,10 +513,10 @@
               "type": "Microsoft.Common.TextBox",
               "label": "SQL Always On Availability Group Listener Name",
               "toolTip": "SQL Always On Availability Group Listener Name.",
-              "defaultValue": "",
+              "defaultValue": "alwayson-ag-listener",
               "constraints": {
                 "required": true,
-                "regex": "^[a-z0-9A-Z]{1,20}$",
+                "regex": "^[a-z0-9A-Z -]{1,20}$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-20 characters long."
               }
             },
@@ -600,9 +528,73 @@
               "defaultValue": "1433",
               "constraints": {
                 "required": true,
-                "regex": "^[0-9]{1,6}$",
+                "regex": "^[0-9]{1,5}$",
                 "validationMessage": "Only numbers are allowed, and the value must be 1-6 characters long."
               }
+            },
+            {
+              "name": "appVMSize",
+              "type": "Microsoft.Compute.SizeSelector",
+              "label": "VIDIZMO Application VM Size",
+              "toolTip": "Size of the VIDIZMO VM instance to be created for VIDIZMO Application servers. DS series VMs only supported in premium storage type.",
+              "recommendedSizes": [
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3"
+              ],
+              "constraints": {
+                "allowedSizes": [
+                  "Standard_A3",
+                  "Standard_A4",
+                  "Standard_A6",
+                  "Standard_A7",
+                  "Standard_A8",
+                  "Standard_A9",
+                  "Standard_A10",
+                  "Standard_A11",
+                  "Standard_D2",
+                  "Standard_D3",
+                  "Standard_D4",
+                  "Standard_D12",
+                  "Standard_D13",
+                  "Standard_D14",
+                  "Standard_D3_v2",
+                  "Standard_D4_v2",
+                  "Standard_D5_v2",
+                  "Standard_D12_v2",
+                  "Standard_D13_v2",
+                  "Standard_D14_v2",
+                  "Standard_D15_v2",
+                  "Standard_DS2",
+                  "Standard_DS3",
+                  "Standard_DS4",
+                  "Standard_DS12",
+                  "Standard_DS13",
+                  "Standard_DS14",
+                  "Standard_DS3_v2",
+                  "Standard_DS4_v2",
+                  "Standard_DS5_v2",
+                  "Standard_DS12_v2",
+                  "Standard_DS13_v2",
+                  "Standard_DS14_v2",
+                  "Standard_DS15_v2",
+                  "Standard_F4",
+                  "Standard_F8",
+                  "Standard_F16",
+                  "Standard_F4s",
+                  "Standard_F8s",
+                  "Standard_F16s",
+                  "Standard_G2",
+                  "Standard_G3",
+                  "Standard_G4",
+                  "Standard_G5",
+                  "Standard_GS2",
+                  "Standard_GS3",
+                  "Standard_GS4",
+                  "Standard_GS5"
+                ]
+              },
+              "osPlatform": "Windows"
             },
             {
               "name": "vidizmoAppMachineName",
@@ -626,6 +618,18 @@
                 "required": true,
                 "regex": "^[a-z0-9A-Z]{1,8}$",
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-8 characters long."
+              }
+            },
+            {
+              "name": "appVMInstanceCount",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Application VM Number of Instances",
+              "toolTip": "Provide number of instance for VIDIZMO application servers.",
+              "defaultValue": "2",
+              "constraints": {
+                "required": true,
+                "regex": "^[0-9]{1,2}$",
+                "validationMessage": "Only numbers are allowed, and the value must be 1-2 characters long."
               }
             },
             {
@@ -861,19 +865,42 @@
       "outputs": {
         "adminUsername": "[basics('adminUsername')]",
         "adminPassword": "[basics('adminPassword').password]",
-        "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
-        "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-        "vNetName": "[steps('infrastructureConfig').vNetName]",
-        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetAddressPrefix]",
-        "subnetName": "[steps('infrastructureConfig').subnetName]",
-        "subnetPrefix": "[steps('infrastructureConfig').subnetPrefix]",
-        "vMName": "[steps('infrastructureConfig').vMName]",
-        "vMSize": "[steps('infrastructureConfig').vMSize]",
+        
+        "virtualNetworkName": "[steps('infrastructureConfig').vNetName]",
+        "virtualNetworkAddressRange": "[steps('infrastructureConfig').vNetAddressPrefix]",
+        "staticSubnet": "[steps('infrastructureConfig').staticSubnet]",
+        "sqlSubnet": "[steps('infrastructureConfig').sqlSubnet]",
+        "appSubnetIP": "[steps('infrastructureConfig').appSubnet]",
+        "adPDCNICIPAddress": "[steps('infrastructureConfig').adPDCNICIPAddress]",
+        "adBDCNICIPAddress": "[steps('infrastructureConfig').adBDCNICIPAddress]",
+        "sqlLBIPAddress": "[steps('infrastructureConfig').sqlLBIPAddress]",
+        "adVMSize": "[steps('infrastructureConfig').adVMSize]",
+        "sqlVMSize": "[steps('infrastructureConfig').sqlVMSize]",
+        "witnessVMSize": "[steps('infrastructureConfig').witnessVMSize]",
+        "domainName": "[steps('infrastructureConfig').domainName]",
+
+        "sqlStorageAccountName": "[steps('infrastructureConfig').sqlStorageAccount.name]",
+        "sqlStorageAccountType": "[steps('infrastructureConfig').sqlStorageAccount.type]",
+        "sqlServerServiceAccountUserName": "[steps('infrastructureConfig').sqlServerAccountUserName]",
+        "sqlServerServiceAccountPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
+        "deploymentPrefix": "[steps('infrastructureConfig').deploymentPrefix]",
+        "autoPatchingDay": "[steps('vidizmoApplicationConfig').autoPatchingDay]",
+        "autoPatchingStartHour": "[steps('vidizmoApplicationConfig').autoPatchingStartHour]",
+        "sqlAOAGName": "[steps('infrastructureConfig').sqlAOAGName]",
+        "sqlAOListenerName": "[steps('infrastructureConfig').sqlAOListenerName]",
+        "sqlAOListenerPort": "[steps('infrastructureConfig').sqlAOListenerPort]",
+        
+        "appVMSize": "[steps('infrastructureConfig').appVMSize]",
+        "vidizmoappMachineName": "[steps('infrastructureConfig').vidizmoAppMachineName]",
+        "appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
+        "appVMInstanceCount": "[steps('infrastructureConfig').appVMInstanceCount]",
+        
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
+     
         "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
         "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
-        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword]",
+        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
         "firstName": "[steps('vidizmoApplicationConfig').firstName]",
         "lastName": "[steps('vidizmoApplicationConfig').lastName]",
         "organizationName": "[steps('vidizmoApplicationConfig').organizationName]",
