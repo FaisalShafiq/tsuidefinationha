@@ -387,17 +387,22 @@
               }
             },
             {
-              "name": "sqlServerAccountPassword",
-              "type": "Microsoft.Compute.PasswordBox",
-              "label": {
-                "password": "SQL Server User Password",
-                "confirmPassword": "Confirm password"
-              },
-              "toolTip":  "Provide SQL Server User Password.",
-              "constraints": {
-                "required": true
-              },
-              "visible": true  
+                "name": "sqlServerAccountPassword",
+                "type": "Microsoft.Compute.CredentialsCombo",
+                "label": {
+                  "password": "Password",
+                  "confirmPassword": "Confirm password"
+                },
+                "toolTip": {
+                  "password": "Provide SQL Server User Password."
+                },
+                "constraints": {
+                  "required": true
+                },
+                "options": {
+                  "hideConfirmation": false
+                },
+                "osPlatform": "Windows"
             },
             {
               "name": "deploymentPrefix",
