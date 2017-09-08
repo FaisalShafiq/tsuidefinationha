@@ -282,7 +282,7 @@
             {
               "name": "witnessVMSize",
               "type": "Microsoft.Compute.SizeSelector",
-              "label": "Witness Virtual Machine Size",
+              "label": "Witness VM Size",
               "toolTip": "Size of the VIDIZMO VM instance to be created for High Availibility witness server. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
                 "Standard_D1",
