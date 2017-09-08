@@ -361,6 +361,20 @@
               }
             },
             {
+              "name": "sqlStorageAccount",
+              "type": "Microsoft.Storage.StorageAccountSelector",
+              "label": "SQL Server Virtual Machine Storage Account",
+              "defaultValue": {
+                "name": "",
+                "type": "Premium_LRS"
+              },
+              "constraints": {
+                "allowedTypes": [
+                  "Premium_LRS"
+                ]
+              }
+            },
+            {
               "name": "sqlServerAccountUserName",
               "type": "Microsoft.Common.TextBox",
               "label": "User Name for SQL Server Configuration",
@@ -384,20 +398,6 @@
               },
               "constraints": {
                 "required": true
-              }
-            },
-            {
-              "name": "sqlStorageAccount",
-              "type": "Microsoft.Storage.StorageAccountSelector",
-              "label": "SQL Server Virtual Machine Storage Account",
-              "defaultValue": {
-                "name": "",
-                "type": "Premium_LRS"
-              },
-              "constraints": {
-                "allowedTypes": [
-                  "Premium_LRS"
-                ]
               }
             },
             {
