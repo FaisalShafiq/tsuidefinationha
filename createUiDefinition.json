@@ -398,7 +398,8 @@
               },
               "constraints": {
                 "required": true
-              }
+              },
+              "visible": true  
             },
             {
               "name": "deploymentPrefix",
