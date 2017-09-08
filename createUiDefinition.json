@@ -390,7 +390,7 @@
                 "name": "sqlServerAccountPassword",
                 "type": "Microsoft.Compute.CredentialsCombo",
                 "label": {
-                  "password": "Password",
+                  "password": "SQL Server User Password",
                   "confirmPassword": "Confirm password"
                 },
                 "toolTip": {
@@ -743,17 +743,22 @@
               }
             },
             {
-                "name": "sqlServerUserPassword",
-                "type": "Microsoft.Compute.PasswordBox",
+                "name": "vidizmoApplicationPassword",
+                "type": "Microsoft.Compute.CredentialsCombo",
                 "label": {
-                  "password": "Password",
-                  "confirmPassword": "Confirm Password"
+                  "password": "VIDIZMO Application User Password",
+                  "confirmPassword": "Confirm password"
                 },
-                "toolTip": "Password for the SQL server user",
+                "toolTip": {
+                  "password": "Provide Vidizmo Application User Password."
+                },
+                "constraints": {
+                  "required": true
+                },
                 "options": {
-                  "hideConfirmation": false
+                  "hideConfirmation": true
                 },
-                "visible": true
+                "osPlatform": "Windows"
             },
             {
               "name": "firstName",
