@@ -34,51 +34,6 @@
           "bladeTitle": "VIDIZMO Infrastructure settings",
           "elements": [
             {
-                        "name": "vnetSpec",
-                        "type": "Microsoft.Network.VirtualNetworkCombo",
-                        "label": {
-                            "virtualNetwork": "Virtual network",
-                            "subnets": "Subnets"
-                        },
-                        "toolTip": {
-                            "virtualNetwork": "",
-                            "subnets": ""
-                        },
-                        "defaultValue": {
-                            "name": "splunkVnet",
-                            "addressPrefixSize": "/16"
-                        },
-                        "constraints": {
-                            "minAddressPrefixSize": "/29"
-                        },
-                        "subnets": {
-                            "subnet1": {
-                                "label": "Search head subnet",
-                                "defaultValue": {
-                                    "name": "shsubnet",
-                                    "addressPrefixSize": "/24"
-                                },
-                                "constraints": {
-                                    "minAddressPrefixSize": "/29",
-                                    "minAddressCount": 1,
-                                    "requireContiguousAddresses": true
-                                }
-                            },
-                            "subnet2": {
-                                "label": "Index subnet",
-                                "defaultValue": {
-                                    "name": "idxsubnet",
-                                    "addressPrefixSize": "/24"
-                                },
-                                "constraints": {
-                                    "minAddressPrefixSize": "/29",
-                                    "minAddressCount": 4,
-                                    "requireContiguousAddresses": true
-                                }
-                            }
-                        }
-                    },
-              {
               "name": "vNetName",
               "type": "Microsoft.Common.TextBox",
               "label": "Virtual Network Name",
@@ -727,54 +682,98 @@
               "name": "vidizmoLMSPackage",
               "type": "Microsoft.Common.DropDown",
               "label": "Select Vidizmo License",
+              "defaultValue": "EnterpriseTube Standard - 1 Portals - 100 Users",
               "toolTip": "Select Vidizmo Application License for your deployment.",
               "constraints": {
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 1K Users",
-                    "value": "VDZMO-AZR-ENT-STD-1000"
-
+                    "label": "EnterpriseTube Standard - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-standard-100"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 2.5K Users",
-                    "value": "VDZMO-AZR-ENT-STD-2500"
-
+                    "label": "EnterpriseTube Standard - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-standard-250"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 5K Users",
-                    "value": "VDZMO-AZR-ENT-STD-5000"
-
+                    "label": "EnterpriseTube Standard - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-standard-500"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 10K Users",
-                    "value": "VDZMO-AZR-ENT-STD-10K"
-
+                    "label": "EnterpriseTube Standard - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-standard-750"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 25K Users",
-                    "value": "VDZMO-AZR-ENT-STD-25K"
+                    "label": "EnterpriseTube Standard - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-standard-1k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 1K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-1000"
+                    "label": "EnterpriseTube Standard - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-standard-2.5k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 2.5K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-2500"
+                    "label": "EnterpriseTube Standard - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-standard-5k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 5K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-5000"
+                    "label": "EnterpriseTube Standard - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-standard-10k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 10K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-10K"
-
+                    "label": "EnterpriseTube Standard - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-standard-25k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 25K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-25K"
+                    "label": "EnterpriseTube Standard - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-standard-50k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-standard-100k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-premium-100"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-premium-250"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-premium-500"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-premium-750"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-premium-1k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-premium-2.5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-premium-5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-premium-10k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-premium-25k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-premium-50k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-premium-100k"
                   }
                 ]
               }
@@ -910,7 +909,7 @@
       "outputs": {
         "adminUsername": "[basics('adminUsername')]",
         "adminPassword": "[basics('adminPassword').password]",
-        
+
         "virtualNetworkName": "[steps('infrastructureConfig').vNetName]",
         "virtualNetworkAddressRange": "[steps('infrastructureConfig').vNetAddressPrefix]",
         "staticSubnet": "[steps('infrastructureConfig').staticSubnet]",
@@ -934,15 +933,15 @@
         "sqlAOAGName": "[steps('infrastructureConfig').sqlAOAGName]",
         "sqlAOListenerName": "[steps('infrastructureConfig').sqlAOListenerName]",
         "sqlAOListenerPort": "[steps('infrastructureConfig').sqlAOListenerPort]",
-        
+
         "appVMSize": "[steps('infrastructureConfig').appVMSize]",
         "vidizmoappMachineName": "[steps('infrastructureConfig').vidizmoAppMachineName]",
         "appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
         "appVMInstanceCount": "[steps('infrastructureConfig').appVMInstanceCount]",
-        
+
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
-     
+
         "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
         "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
         "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
