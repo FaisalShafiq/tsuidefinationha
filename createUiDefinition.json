@@ -393,9 +393,7 @@
                 "password": "SQL Server User Password",
                 "confirmPassword": "Confirm password"
               },
-              "toolTip": {
-                "password": "Provide SQL Server User Password."
-              },
+              "toolTip":  "Provide SQL Server User Password.",
               "constraints": {
                 "required": true
               },
