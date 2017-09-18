@@ -538,9 +538,9 @@
               "label": "VIDIZMO Application VM Size",
               "toolTip": "Size of the VIDIZMO VM instance to be created for VIDIZMO Application servers. DS series VMs only supported in premium storage type.",
               "recommendedSizes": [
-                "Standard_D1",
-                "Standard_D2",
-                "Standard_D3"
+                "Standard_DS2",
+                "Standard_DS3",
+                "Standard_DS4"
               ],
               "constraints": {
                 "allowedSizes": [
@@ -599,8 +599,8 @@
             {
               "name": "vidizmoAppMachineName",
               "type": "Microsoft.Common.TextBox",
-              "label": "VIDIZMO Application Server DNS Name",
-              "toolTip": "VIDIZMO Application DNS name to configure in Azure Public IP.",
+              "label": "VIDIZMO Application Server DNS name label prefix",
+              "toolTip": "An 'A record' that starts with the specified label and resolves to this public IP address will be registered with the Azure-provided DNS servers. Example: mylabel.westus.cloudapp.azure.com.",
               "defaultValue": "",
               "constraints": {
                 "required": true,
@@ -688,24 +688,92 @@
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "Digital Asset Management - 1 Portals - 50 Users",
-                    "value": "vidizmo-dam-50"
+                    "label": "EnterpriseTube Standard - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-standard-100"
                   },
                   {
-                    "label": "Digital Asset Management - 1 Portals - 100 Users",
-                    "value": "vidizmo-dam-100"
+                    "label": "EnterpriseTube Standard - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-standard-250"
                   },
                   {
-                    "label": "Digital Asset Management - 1 Portals - 250 Users",
-                    "value": "vidizmo-dam-250"
+                    "label": "EnterpriseTube Standard - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-standard-500"
                   },
                   {
-                    "label": "Digital Asset Management - 1 Portals - 500 Users",
-                    "value": "vidizmo-dam-500"
+                    "label": "EnterpriseTube Standard - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-standard-750"
                   },
                   {
-                    "label": "Digital Asset Management - 1 Portals - 750 Users",
-                    "value": "vidizmo-dam-750"
+                    "label": "EnterpriseTube Standard - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-standard-1k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-standard-2.5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-standard-5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-standard-10k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-standard-25k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-standard-50k"
+                  },
+                  {
+                    "label": "EnterpriseTube Standard - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-standard-100k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-premium-100"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-premium-250"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-premium-500"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-premium-750"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-premium-1k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-premium-2.5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-premium-5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-premium-10k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-premium-25k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-premium-50k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-premium-100k"
                   }
                 ]
               }
@@ -826,8 +894,8 @@
             {
               "name": "whereDidYouHearForUs",
               "type": "Microsoft.Common.TextBox",
-              "label": "Where did you hear for us?",
-              "toolTip": "Tell us, where did you hear for us?",
+              "label": "Where did you hear about us?",
+              "toolTip": "Tell us, where did you hear about us?",
               "defaultValue": "",
               "constraints": {
                 "required": true,
