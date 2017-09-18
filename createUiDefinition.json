@@ -599,7 +599,7 @@
             {
               "name": "vidizmoAppMachineName",
               "type": "Microsoft.Common.TextBox",
-              "label": "VIDIZMO Application Server DNS name label prefix",
+              "label": "VIDIZMO Application Server DNS Name Label Prefix",
               "toolTip": "An 'A record' that starts with the specified label and resolves to this public IP address will be registered with the Azure-provided DNS servers. Example: mylabel.westus.cloudapp.azure.com.",
               "defaultValue": "",
               "constraints": {
@@ -852,7 +852,7 @@
               "defaultValue": "",
               "constraints": {
                 "required": true,
-                "regex": "^(http|https):\\/\\/[^ ]+$",
+                "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
                 "validationMessage": "Only provide URLs like 'http://yourwebsite.com'."
               }
             },
