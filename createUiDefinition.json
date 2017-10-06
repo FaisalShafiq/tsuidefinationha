@@ -99,7 +99,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "AD primary Server IP Address",
               "toolTip": "Provide IP address for Active Directory primary server.",
-              "defaultValue": "10.0.0.4",
+              "defaultValue": "10.1.0.4",
               "constraints": {
                 "required": true
               }
@@ -109,7 +109,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "AD backup Server IP Address",
               "toolTip": "Provide IP address for Active Directory backup server.",
-              "defaultValue": "10.0.0.5",
+              "defaultValue": "10.1.0.5",
               "constraints": {
                 "required": true
               }
@@ -119,7 +119,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "SQL load balancer IP Address",
               "toolTip": "Provide IP address for SQL load balancer.",
-              "defaultValue": "10.0.1.9",
+              "defaultValue": "10.1.1.9",
               "constraints": {
                 "required": true
               }
@@ -627,6 +627,27 @@
               },
               "osPlatform": "Windows"
             },
+	    {
+             "name": "vMPublicIP",
+             "type": "Microsoft.Network.PublicIpAddressCombo",
+             "label": {
+               "publicIpAddress": "Public IP address",
+               "domainNameLabel": "DNS label"
+             },
+             "toolTip": {
+               "domainNameLabel": "DNS label for the VIDIZMO Server's public IP address, which hosts the VIDIZMO application."
+             },
+             "options": {
+               "hideNone": true,
+               "hideDomainNameLabel": false,
+               "hideExisting": false
+             },
+             "constraints": {
+               "required": {
+                 "domainNameLabel": true
+                }
+              }
+            },
             {
               "name": "vidizmoAppMachineName",
               "type": "Microsoft.Common.TextBox",
@@ -656,7 +677,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "Application VM Number of Instances",
               "toolTip": "Provide number of instance for VIDIZMO application servers.",
-              "defaultValue": 2,
+              "defaultValue": "2",
               "constraints": {
                 "required": true,
                 "regex": "^[0-9]{1,2}$",
@@ -961,7 +982,10 @@
 
         "sqlStorageAccountName": "[steps('infrastructureConfig').sqlStorageAccount.name]",
         "sqlStorageAccountType": "[steps('infrastructureConfig').sqlStorageAccount.type]",
-        "sqlServerServiceAccountUserName": "[steps('infrastructureConfig').sqlServerAccountUserName]",
+      	"sqlStorageAccountNewOrExists": "[steps('infrastructureConfig').sqlStorageAccount.newOrExisting]",
+      	"sqlStorageAccountRG": "[steps('infrastructureConfig').sqlStorageAccount.resourceGroup]",
+
+	"sqlServerServiceAccountUserName": "[steps('infrastructureConfig').sqlServerAccountUserName]",
         "sqlServerServiceAccountPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
         "deploymentPrefix": "[steps('infrastructureConfig').deploymentPrefix]",
         "autoPatchingDay": "[steps('vidizmoApplicationConfig').autoPatchingDay]",
@@ -971,8 +995,12 @@
         "sqlAOListenerPort": "[steps('infrastructureConfig').sqlAOListenerPort]",
 
         "appVMSize": "[steps('infrastructureConfig').appVMSize]",
-        "vidizmoappMachineName": "[steps('infrastructureConfig').vidizmoAppMachineName]",
-        "appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
+        "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
+      	"vidizmoappMachineName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
+      	"vMPublicIPNewOrExists": "[steps('infrastructureConfig').vMPublicIP.newOrExistingOrNone]",
+      	"vMPublicIPRG": "[steps('infrastructureConfig').vMPublicIP.resourceGroup]",
+        
+	"appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
         "appVMInstanceCount": "[steps('infrastructureConfig').appVMInstanceCount]",
 
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
