@@ -1,6 +1,7 @@
 {
-    "handler": "Microsoft.Compute.MultiVm",
-    "version": "0.0.1-preview",
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json",
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.1.2-preview",
     "parameters": {
       "basics": [
         {
@@ -33,6 +34,66 @@
           },
           "bladeTitle": "VIDIZMO Infrastructure settings",
           "elements": [
+              {
+	       "name": "vNet",
+               "type": "Microsoft.Network.VirtualNetworkCombo",
+               "label": {
+                   "virtualNetwork": "Virtual network",
+                   "subnets": "Subnets"
+               },
+               "toolTip": {
+                   "virtualNetwork": "To use an existing VNET, 3 subnets must already exist for Active Directory, SQL and VIDIZMO Application. For a new VNET, the template will create them.",
+                   "subnets": ""
+               },
+               "options": {
+		"hideExisting" : false
+               },
+               "defaultValue": {
+                   "name": "vNet01",
+                   "addressPrefixSize": "/16"
+               },
+               "constraints": {
+                   "minAddressPrefixSize": "/16"
+               },
+               "subnets": {
+                   "adSubnet": {
+                       "label": "Active Directory Subnet",
+                       "defaultValue": {
+                           "name": "adSubnet",
+                           "addressPrefixSize": "/24"
+                       },
+                       "constraints": {
+                           "minAddressPrefixSize": "/24",
+                           "minAddressCount": 12,
+                           "requireContiguousAddresses": true
+                       }
+                   },
+                   "sqlSubnet": {
+                       "label": "SQL Subnet",
+                       "defaultValue": {
+                           "name": "sqlSubnet",
+                           "addressPrefixSize": "/24"
+                       },
+                       "constraints": {
+                           "minAddressPrefixSize": "/24",
+                           "minAddressCount": 12,
+                           "requireContiguousAddresses": true
+                       }
+                   },
+                   "appSubnet": {
+                       "label": "VIDIZMO Application Subnet",
+                       "defaultValue": {
+                           "name": "appSubnet",
+                           "addressPrefixSize": "/24"
+                       },
+                       "constraints": {
+                           "minAddressPrefixSize": "/24",
+                           "minAddressCount": 12,
+                           "requireContiguousAddresses": true
+                       }
+                   }
+                }
+	    },
             {
               "name": "vNetName",
               "type": "Microsoft.Common.TextBox",
