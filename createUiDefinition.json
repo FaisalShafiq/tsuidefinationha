@@ -125,6 +125,18 @@
               }
             },
             {
+              "name": "deploymentPrefix",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Always On Availability Group deployment Prefix",
+              "toolTip": "Provide Always On Availability Group deployment Prefix.",
+              "defaultValue": "aodns",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,5}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-5 characters long."
+              }
+            },		  
+            {
               "name": "adVMSize",
               "type": "Microsoft.Compute.SizeSelector",
               "label": "Active Directory VM Size",
@@ -310,28 +322,36 @@
                 "validationMessage": "Only characters for domain are allowd like 'yourdomain.local'."
               }
             },
-            {
-  "name": "element1",
-  "type": "Microsoft.Storage.MultiStorageAccountCombo",
-  "label": {
-    "prefix": "Storage account prefix",
-    "type": "Storage account type"
-  },
-  "toolTip": {
-    "prefix": "",
-    "type": ""
-  },
-  "defaultValue": {
-    "prefix": "sa",
-    "type": "Premium_LRS"
-  },
-  "constraints": {
-    "allowedTypes": [],
-    "excludedTypes": []
-  },
-  "count": 2,
-  "visible": true
-},
+	    {
+              "name": "domainAdminAccountUserName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Domain Administrator User Name.",
+              "toolTip": "Provide a domain Administrator User Name.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,15}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+              }
+            },
+	    {
+              "name": "domainAdminAccountPassword",
+              "type": "Microsoft.Compute.CredentialsCombo",
+              "label": {
+                "password": "Domain Administrator User Password",
+                "confirmPassword": "Confirm password"
+              },
+              "toolTip": {
+                "password": "Provide SQL Server User Password."
+              },
+              "constraints": {
+                "required": true
+              },
+              "options": {
+                "hideConfirmation": false
+              },
+              "osPlatform": "Windows"
+            },
 	    {
               "name": "sqlStorageAccount",
               "type": "Microsoft.Storage.StorageAccountSelector",
@@ -347,9 +367,69 @@
               }
             },
             {
-              "name": "sqlServerAccountUserName",
+              "name": "sqlAdminAccountUserName",
               "type": "Microsoft.Common.TextBox",
-              "label": "User Name for SQL Server Configuration",
+              "label": "SQL Administrator User Name.",
+              "toolTip": "Provide SQL Administrator User Name. The user will be db system administrator like 'sa'",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,15}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+              }
+            },
+	    {
+              "name": "sqlAdminAccountPassword",
+              "type": "Microsoft.Compute.CredentialsCombo",
+              "label": {
+                "password": "SQL Administrator User Password",
+                "confirmPassword": "Confirm password"
+              },
+              "toolTip": {
+                "password": "Provide SQL Administrator User Password."
+              },
+              "constraints": {
+                "required": true
+              },
+              "options": {
+                "hideConfirmation": false
+              },
+              "osPlatform": "Windows"
+            },
+	    {
+              "name": "vidizmoDBAccountUserName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "VIDIZMO Application DB User Name.",
+              "toolTip": "Provide VIDIZMO Application DB User Name.",
+              "defaultValue": "",
+              "constraints": {
+                "required": true,
+                "regex": "^[a-z0-9A-Z]{1,15}$",
+                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+              }
+            },
+	    {
+              "name": "vidizmoDBAccountPassword",
+              "type": "Microsoft.Compute.CredentialsCombo",
+              "label": {
+                "password": "VIDIZMO Application DB User Password",
+                "confirmPassword": "Confirm password"
+              },
+              "toolTip": {
+                "password": "Provide VIDIZMO Application DB User Password."
+              },
+              "constraints": {
+                "required": true
+              },
+              "options": {
+                "hideConfirmation": false
+              },
+              "osPlatform": "Windows"
+            },
+	    {
+              "name": "sqlServiceAccountUserName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "User Name for SQL Service Configuration",
               "toolTip": "Provide a domain user name to use in SQL Service Configuration.",
               "defaultValue": "",
               "constraints": {
@@ -358,15 +438,15 @@
                 "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
               }
             },
-            {
-              "name": "sqlServerAccountPassword",
+	    {
+              "name": "sqlServiceAccountPassword",
               "type": "Microsoft.Compute.CredentialsCombo",
               "label": {
-                "password": "SQL Server User Password",
+                "password": "SQL Service User Password",
                 "confirmPassword": "Confirm password"
               },
               "toolTip": {
-                "password": "Provide SQL Server User Password."
+                "password": "Provide SQL Service User Password."
               },
               "constraints": {
                 "required": true
@@ -878,7 +958,7 @@
                 "required": true
               },
               "options": {
-                "hideConfirmation": true
+                "hideConfirmation": false
               },
               "osPlatform": "Windows"
             },
@@ -947,6 +1027,7 @@
               "type": "Microsoft.Common.DropDown",
               "label": "I would like to",
               "toolTip": "Select option listed in Dropdown",
+              "defaultValue": "VIDIZMO Sales Team to Contact me",
               "constraints": {
                 "required": true,
                 "allowedValues": [
