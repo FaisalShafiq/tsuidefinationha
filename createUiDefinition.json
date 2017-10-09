@@ -1050,7 +1050,7 @@
         "domainName": "[steps('infrastructureConfig').domainName]",
 
         "domainAdminAccountUserName": "[steps('infrastructureConfig').domainAdminAccountUserName]",
-        "domainAdminAccountPassword": "[steps('vidizmoApplicationConfig').domainAdminAccountPassword.password]",
+        "domainAdminAccountPassword": "[steps('infrastructureConfig').domainAdminAccountPassword.password]",
 
         "sqlStorageAccountName": "[steps('infrastructureConfig').sqlStorageAccount.name]",
         "sqlStorageAccountType": "[steps('infrastructureConfig').sqlStorageAccount.type]",
