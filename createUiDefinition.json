@@ -34,66 +34,66 @@
           },
           "bladeTitle": "VIDIZMO Infrastructure settings",
           "elements": [
-              {
-	       "name": "vNet",
-               "type": "Microsoft.Network.VirtualNetworkCombo",
-               "label": {
-                   "virtualNetwork": "Virtual Network",
-                   "subnets": "Subnets"
-               },
-               "toolTip": {
-                   "virtualNetwork": "To use an existing VNET, 3 subnets must already exist for Active Directory, SQL and VIDIZMO Application. For a new VNET, the template will create them.",
-                   "subnets": ""
-               },
-               "options": {
-		"hideExisting" : false
-               },
-               "defaultValue": {
-                   "name": "vNet01",
-                   "addressPrefixSize": "/16"
-               },
-               "constraints": {
-                   "minAddressPrefixSize": "/16"
-               },
-               "subnets": {
-                   "adSubnet": {
-                       "label": "Active Directory Subnet",
-                       "defaultValue": {
-                           "name": "adSubnet",
-                           "addressPrefixSize": "/24"
-                       },
-                       "constraints": {
-                           "minAddressPrefixSize": "/24",
-                           "minAddressCount": 12,
-                           "requireContiguousAddresses": true
-                       }
-                   },
-                   "sqlSubnet": {
-                       "label": "SQL Subnet",
-                       "defaultValue": {
-                           "name": "sqlSubnet",
-                           "addressPrefixSize": "/24"
-                       },
-                       "constraints": {
-                           "minAddressPrefixSize": "/24",
-                           "minAddressCount": 12,
-                           "requireContiguousAddresses": true
-                       }
-                   },
-                   "appSubnet": {
-                       "label": "VIDIZMO Application Subnet",
-                       "defaultValue": {
-                           "name": "appSubnet",
-                           "addressPrefixSize": "/24"
-                       },
-                       "constraints": {
-                           "minAddressPrefixSize": "/24",
-                           "minAddressCount": 12,
-                           "requireContiguousAddresses": true
-                       }
-                   }
+            {
+              "name": "vNet",
+              "type": "Microsoft.Network.VirtualNetworkCombo",
+              "label": {
+                "virtualNetwork": "Virtual Network",
+                "subnets": "Subnets"
+              },
+              "toolTip": {
+                "virtualNetwork": "To use an existing VNET, 3 subnets must already exist for Active Directory, SQL and VIDIZMO Application. For a new VNET, the template will create them.",
+                "subnets": ""
+              },
+              "options": {
+                "hideExisting": false
+              },
+              "defaultValue": {
+                "name": "vNet01",
+                "addressPrefixSize": "/16"
+              },
+              "constraints": {
+                "minAddressPrefixSize": "/16"
+              },
+              "subnets": {
+                "adSubnet": {
+                  "label": "Active Directory Subnet",
+                  "defaultValue": {
+                    "name": "adSubnet",
+                    "addressPrefixSize": "/24"
+                  },
+                  "constraints": {
+                    "minAddressPrefixSize": "/24",
+                    "minAddressCount": 12,
+                    "requireContiguousAddresses": true
+                  }
+                },
+                "sqlSubnet": {
+                  "label": "SQL Subnet",
+                  "defaultValue": {
+                    "name": "sqlSubnet",
+                    "addressPrefixSize": "/24"
+                  },
+                  "constraints": {
+                    "minAddressPrefixSize": "/24",
+                    "minAddressCount": 12,
+                    "requireContiguousAddresses": true
+                  }
+                },
+                "appSubnet": {
+                  "label": "VIDIZMO Application Subnet",
+                  "defaultValue": {
+                    "name": "appSubnet",
+                    "addressPrefixSize": "/24"
+                  },
+                  "constraints": {
+                    "minAddressPrefixSize": "/24",
+                    "minAddressCount": 12,
+                    "requireContiguousAddresses": true
+                  }
                 }
-	    },
+              }
+            },
             {
               "name": "adPDCNICIPAddress",
               "type": "Microsoft.Common.TextBox",
@@ -124,18 +124,6 @@
                 "required": true
               }
             },
-            {
-              "name": "deploymentPrefix",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Always On Availability Group deployment Prefix",
-              "toolTip": "Provide Always On Availability Group deployment Prefix.",
-              "defaultValue": "aodns",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,5}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-5 characters long."
-              }
-            },		  
             {
               "name": "adVMSize",
               "type": "Microsoft.Compute.SizeSelector",
@@ -457,18 +445,6 @@
               "osPlatform": "Windows"
             },
             {
-              "name": "deploymentPrefix",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Always On Availability Group deployment Prefix",
-              "toolTip": "Provide Always On Availability Group deployment Prefix.",
-              "defaultValue": "aodns",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,5}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-5 characters long."
-              }
-            },
-            {
               "name": "autoPatchingDay",
               "type": "Microsoft.Common.DropDown",
               "label": "SQL Auto Patching Day",
@@ -748,18 +724,6 @@
                "required": {
                  "domainNameLabel": true
                 }
-              }
-            },
-            {
-              "name": "vidizmoAppMachineName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "VIDIZMO Application Server DNS Name Label Prefix",
-              "toolTip": "An 'A record' that starts with the specified label and resolves to this public IP address will be registered with the Azure-provided DNS servers. Example: mylabel.westus.cloudapp.azure.com.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,15}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
               }
             },
             {
@@ -1064,6 +1028,7 @@
       "outputs": {
         "adminUsername": "[basics('adminUsername')]",
         "adminPassword": "[basics('adminPassword').password]",
+        "location": "[location()]",
 
         "virtualNetworkName": "[steps('infrastructureConfig').vNet.name]",
         "virtualNetworkAddressRange": "[steps('infrastructureConfig').vNet.addressPrefix]",
@@ -1074,42 +1039,53 @@
         "appSubnet": "[steps('infrastructureConfig').vNet.subnets.appSubnet.name]",
         "appSubnetPrefix": "[steps('infrastructureConfig').vNet.subnets.appSubnet.addressPrefix]",
         "virtualNetworkNewOrExisting": "[steps('infrastructureConfig').vNetvNet.newOrExisting]",
-      	"virtualNetworkRG": "[steps('infrastructureConfig').vNet.resourceGroup]",
-      	"adPDCNICIPAddress": "[steps('infrastructureConfig').adPDCNICIPAddress]",
+        "virtualNetworkRG": "[steps('infrastructureConfig').vNet.resourceGroup]",
+        "adPDCNICIPAddress": "[steps('infrastructureConfig').adPDCNICIPAddress]",
         "adBDCNICIPAddress": "[steps('infrastructureConfig').adBDCNICIPAddress]",
         "sqlLBIPAddress": "[steps('infrastructureConfig').sqlLBIPAddress]",
+
         "adVMSize": "[steps('infrastructureConfig').adVMSize]",
         "sqlVMSize": "[steps('infrastructureConfig').sqlVMSize]",
         "witnessVMSize": "[steps('infrastructureConfig').witnessVMSize]",
         "domainName": "[steps('infrastructureConfig').domainName]",
 
+        "domainAdminAccountUserName": "[steps('infrastructureConfig').domainAdminAccountUserName]",
+        "domainAdminAccountPassword": "[steps('vidizmoApplicationConfig').domainAdminAccountPassword.password]",
+
         "sqlStorageAccountName": "[steps('infrastructureConfig').sqlStorageAccount.name]",
         "sqlStorageAccountType": "[steps('infrastructureConfig').sqlStorageAccount.type]",
-      	"sqlStorageAccountNewOrExists": "[steps('infrastructureConfig').sqlStorageAccount.newOrExisting]",
-      	"sqlStorageAccountRG": "[steps('infrastructureConfig').sqlStorageAccount.resourceGroup]",
+        "sqlStorageAccountNewOrExists": "[steps('infrastructureConfig').sqlStorageAccount.newOrExisting]",
+        "sqlStorageAccountRG": "[steps('infrastructureConfig').sqlStorageAccount.resourceGroup]",
 
-	"sqlServerServiceAccountUserName": "[steps('infrastructureConfig').sqlServerAccountUserName]",
-        "sqlServerServiceAccountPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
-        "deploymentPrefix": "[steps('infrastructureConfig').deploymentPrefix]",
-        "autoPatchingDay": "[steps('vidizmoApplicationConfig').autoPatchingDay]",
-        "autoPatchingStartHour": "[steps('vidizmoApplicationConfig').autoPatchingStartHour]",
+        "sqlServiceAccountUserName": "[steps('infrastructureConfig').sqlServiceAccountUserName]",
+        "sqlServiceAccountPassword": "[steps('infrastructureConfig').sqlServiceAccountPassword.password]",
+
+        "sqlAdminAccountUserName": "[steps('infrastructureConfig').sqlAdminAccountUserName]",
+        "sqlAdminAccountPassword": "[steps('infrastructureConfig').sqlAdminAccountPassword.password]",
+
+        "vidizmoDBAccountUserName": "[steps('infrastructureConfig').vidizmoDBAccountUserName]",
+        "vidizmoDBAccountPassword": "[steps('infrastructureConfig').vidizmoDBAccountPassword.password]",
+
+
+        "autoPatchingDay": "[steps('infrastructureConfig').autoPatchingDay]",
+        "autoPatchingStartHour": "[steps('infrastructureConfig').autoPatchingStartHour]",
         "sqlAOAGName": "[steps('infrastructureConfig').sqlAOAGName]",
         "sqlAOListenerName": "[steps('infrastructureConfig').sqlAOListenerName]",
         "sqlAOListenerPort": "[steps('infrastructureConfig').sqlAOListenerPort]",
 
         "appVMSize": "[steps('infrastructureConfig').appVMSize]",
         "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
-      	"vidizmoappMachineName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
-      	"vMPublicIPNewOrExists": "[steps('infrastructureConfig').vMPublicIP.newOrExistingOrNone]",
-      	"vMPublicIPRG": "[steps('infrastructureConfig').vMPublicIP.resourceGroup]",
-        
-	"appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
+        "vidizmoappMachineName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
+        "vMPublicIPNewOrExists": "[steps('infrastructureConfig').vMPublicIP.newOrExistingOrNone]",
+        "vMPublicIPRG": "[steps('infrastructureConfig').vMPublicIP.resourceGroup]",
+
+        "appScaleSetName": "[steps('infrastructureConfig').appScaleSetName]",
         "appVMInstanceCount": "[steps('infrastructureConfig').appVMInstanceCount]",
 
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
-      	"mediaStorageNewOrExists": "[steps('infrastructureConfig').mediaStorageName.newOrExisting]",
-      	"mediaStorageAccountRG": "[steps('infrastructureConfig').mediaStorageName.resourceGroup]",
+        "mediaStorageNewOrExists": "[steps('infrastructureConfig').mediaStorageName.newOrExisting]",
+        "mediaStorageAccountRG": "[steps('infrastructureConfig').mediaStorageName.resourceGroup]",
 
         "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
         "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
