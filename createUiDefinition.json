@@ -1038,7 +1038,7 @@
         "sqlSubnetPrefix": "[steps('infrastructureConfig').vNet.subnets.sqlSubnet.addressPrefix]",
         "appSubnet": "[steps('infrastructureConfig').vNet.subnets.appSubnet.name]",
         "appSubnetPrefix": "[steps('infrastructureConfig').vNet.subnets.appSubnet.addressPrefix]",
-        "virtualNetworkNewOrExisting": "[steps('infrastructureConfig').vNetvNet.newOrExisting]",
+        "virtualNetworkNewOrExisting": "[steps('infrastructureConfig').vNet.newOrExisting]",
         "virtualNetworkRG": "[steps('infrastructureConfig').vNet.resourceGroup]",
         "adPDCNICIPAddress": "[steps('infrastructureConfig').adPDCNICIPAddress]",
         "adBDCNICIPAddress": "[steps('infrastructureConfig').adBDCNICIPAddress]",
