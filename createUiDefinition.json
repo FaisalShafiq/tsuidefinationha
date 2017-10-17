@@ -99,7 +99,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "AD primary Server IP Address",
               "toolTip": "Provide IP address for Active Directory primary server.",
-              "defaultValue": "10.1.0.4",
+              "defaultValue": "10.0.0.4",
               "constraints": {
                 "required": true
               }
@@ -109,7 +109,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "AD backup Server IP Address",
               "toolTip": "Provide IP address for Active Directory backup server.",
-              "defaultValue": "10.1.0.5",
+              "defaultValue": "10.0.0.5",
               "constraints": {
                 "required": true
               }
@@ -119,7 +119,7 @@
               "type": "Microsoft.Common.TextBox",
               "label": "SQL load balancer IP Address",
               "toolTip": "Provide IP address for SQL load balancer.",
-              "defaultValue": "10.1.1.9",
+              "defaultValue": "10.0.1.9",
               "constraints": {
                 "required": true
               }
